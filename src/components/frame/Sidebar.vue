@@ -1,38 +1,98 @@
-
 <template>
-  <div id="sidenav">
-    <slider
-      :width="300"
-      format="push"
-      direction="left"
-      :opacity="0.15"
-      :links="[
-        {'id': 1, 'text': 'Profile', 'url': 'http://localhost:8080/#/login'},
-        {'id': 2, 'text': 'Dashboard', 'url': 'https://github.com'},
-        // {'id': 3, 'text': 'Subject', 'url': 'https://github.com'}, 
-        {'id': 3, 'text': 'Logout', 'url': 'https://github.com'}
-      ]"
-    >
-    </slider>
-  </div>
+  <v-divider>
+    <v-card>
+      <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          </v-list-item-avatar>
+
+          <v-list-item-title>Judilyn But-anon</v-list-item-title>
+
+          <v-btn icon @click.stop="mini = !mini">
+            <!-- <v-icon>mdi-chevron-left</v-icon> -->
+          </v-btn>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list dense>
+          <v-list-item v-for="item in items" :key="item.title" link>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content> 
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </v-card>
+  </v-divider>
 </template>
-<script src="https://unpkg.com/vue-slider"></script>
+
 <script>
-// import Slider from './components/Slider'
-import Vue from 'vue'
-import Slider from '@jeremyhamm/vue-slider'
+// src/plugins/vuetify.js
 
-Vue.use(Slider)
-export default {
-  name: 'sidenav',
+import Vue from "vue";
+import Vuetify, {
+  VCard,
+  VRating,
+  VToolbar,
+  VDivider,
+  VNavigationDrawer,
+  VListItem,
+  VListItemAvatar,VListItemContent,
+} from "vuetify/lib";
+import { Ripple } from "vuetify/lib/directives";
+
+Vue.use(Vuetify, {
   components: {
-    'slider': Slider
+    VCard,
+    VRating,
+    VToolbar,
+    VDivider,
+    VNavigationDrawer,
+    VListItem,
+    VListItemAvatar,
+    VListItemContent,
+  },
+  directives: {
+    Ripple
   }
-}
-</script>
+});
 
-<style lang="scss">
-  #app {
-    padding: 2em;
+const opts = {
+  name: "sidebar",
+  path: "/sidebar",
+  data() {
+    return {
+      drawer: true,
+      items: [
+        { title: "Home", icon: "mdi-home-city" },
+        { title: "My Account", icon: "mdi-account" },
+        { title: "Users", icon: "mdi-account-group-outline" }
+      ],
+      mini: true
+    };
   }
-</style>
+};
+
+export default new Vuetify(opts);
+// export default {
+//   name:'sidebar',
+//   path: '/sidebar',
+//   data () {
+//     return {
+//       drawer: true,
+//       items: [
+//         { title: 'Home', icon: 'mdi-home-city' },
+//         { title: 'My Account', icon: 'mdi-account' },
+//         { title: 'Users', icon: 'mdi-account-group-outline' },
+//       ],
+//       mini: true,
+//     }
+//   },
+// }
+</script>

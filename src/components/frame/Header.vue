@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#" id="title">MyFirstApp</b-navbar-brand>
+      <b-navbar-brand href="#" id="title">Judilyn But-anon</b-navbar-brand>
       <!-- <b-navbar-brand class="text-center"></b-navbar-brand> -->
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
