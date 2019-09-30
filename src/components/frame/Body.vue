@@ -1,5 +1,5 @@
 <template>
-  <div id="asd">
+  <div id="appBody">
     <transition>
       <router-view></router-view>
     </transition>
@@ -8,6 +8,8 @@
 
 <script>
 export default {
+  name: 'appBody',
+  path: '/appBody',
   data() {
     return {};
   }
